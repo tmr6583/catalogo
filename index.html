@@ -79,24 +79,27 @@
             }
         }
     </style>
-    <script>
-        function searchProducts() {
-            var input, filter, container, products, h2, i, txtValue;
-            input = document.getElementById('searchInput');
-            filter = input.value.toUpperCase();
-            container = document.getElementById('productsContainer');
-            products = container.getElementsByClassName('product');
-            for (i = 0; i < products.length; i++) {
-                h2 = products[i].getElementsByTagName('h2')[0];
-                txtValue = h2.textContent || h2.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    products[i].style.display = '';
-                } else {
-                    products[i].style.display = 'none';
-                }
+  <script>
+    function searchProducts() {
+        var input, filter, container, products, h2, i, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toLowerCase().replace(/\s+/g, ''); // Remove espaços e converte para minúsculas
+        container = document.getElementById('productsContainer');
+        products = container.getElementsByClassName('product');
+        
+        for (i = 0; i < products.length; i++) {
+            h2 = products[i].getElementsByTagName('h2')[0];
+            txtValue = h2.textContent || h2.innerText;
+            txtValue = txtValue.toLowerCase().replace(/\s+/g, ''); // Remove espaços e converte para minúsculas
+            
+            if (txtValue.indexOf(filter) > -1) {
+                products[i].style.display = '';
+            } else {
+                products[i].style.display = 'none';
             }
         }
-    </script>
+    }
+</script>
 </head>
 <body>
     
